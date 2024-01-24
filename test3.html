@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercise jquery1</title>
+  <script src="jquery-3.7.1.min.js"></script>
+    <style>
+              .imageslider{
+                     width: 400px;
+                    background-color: aqua;
+                  overflow: hidden;  
+                     margin: 20px auto;
+                  padding: 10px;
+              }
+
+              img{
+                 width: 100%;
+  
+              }
+              ul{
+                list-style: none;
+                display: flex;
+                padding: 0;
+                transition:transform0.5s;
+                background-color: aqua;
+                padding: 10px;
+               
+              }
+              li{
+                  flex-basis: 400px;/*flexbasis:400px is forកំណតធាតុflexដែលចេញដំបូងមានទំហំ៤០០ភីកសែលហើយនឹងមិន
+                  មិនរួមតូចទេប្រសិនបើមិនមានទំហំគ្រប់គ្រាន់នៅក្នុងflex container*/
+                  flex-shrink: 0; /*cammpt shirnk 1 true, 0false*/
+
+              }
+              button{
+                background-color: blue;
+                padding: 10px 15px;
+                cursor: pointer;
+                border: none;
+                border-radius: 5px;
+                font-size: 15px;
+                color: red;
+                margin-right: 10px;
+              }
+              #start{
+                background-color:purple ;
+              }
+    </style>
+</head>
+<body>
+            <div class="imageslider">
+                 <ul>
+                     <li><img src="C:\Users\MSI GF76\AppData\Local\Temp\Rar$DIa16732.6219\bootstrab.png" alt="html_image"></li>
+                     <li><img src="C:\Users\MSI GF76\AppData\Local\Temp\Rar$DIa16732.11242\css.png" alt=""></li>
+                     <li><img src="C:\Users\MSI GF76\AppData\Local\Temp\Rar$DIa16732.14599\html.png" alt=""></li>
+                     <li><img src="C:\Users\MSI GF76\AppData\Local\Temp\Rar$DIa16732.16105\javascript.png" alt=""></li>
+                     <li><img src="C:\Users\MSI GF76\AppData\Local\Temp\Rar$DIa16732.17995\jQuery1.png" alt=""></li>
+                 </ul>
+                 <button id="stop">Stop</button>
+                 <button id="start">Start</button>
+
+                 
+            </div>
+           
+</body>
+</html>
+<script>
+    $(document).ready(function(){
+        var currentindex=0;
+         function nextSlide(){
+             var currentindex= (currentindex +1 ) % 5; //$('li').lenght();
+             //currentindex=1;
+             var newTransformValue= -currentindex*400;   //-400 currentindex=1;
+
+             $("ul").css("transform","translateX("+newTransformValue+")");
+         }
+          function startSlider(){
+          if(!interval){//បើមិនទាន់interval functionនឹងដើរតែបើintervalហើយfunctionវាមិនដើរទេ
+           interval=setInterval(nextSlide,1000);
+          }
+
+          }
+
+          startSlider();   //start the slide intaialy
+
+          function stopslider(){
+                   clearInterval(interval);
+                   interval=null;
+          }
+               $("#stop").click(stopslider);
+    });
+</script>
